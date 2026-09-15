@@ -1,0 +1,43 @@
+{
+  "dataset_stats": {
+    "train_count": 45615,
+    "val_count": 2000,
+    "test_count": 12284,
+    "total_count": 59899,
+    "num_classes": 3,
+    "class_map": {
+      "0": "negative",
+      "1": "neutral",
+      "2": "positive"
+    },
+    "class_distribution": {
+      "negative": 11377,
+      "neutral": 27479,
+      "positive": 21043
+    },
+    "test_class_distribution": {
+      "negative": 3972,
+      "neutral": 5937,
+      "positive": 2375
+    }
+  },
+  "metrics": {
+    "logistic_regression": {
+      "accuracy": 0.5827906219472484,
+      "macro_precision": 0.5798241161023073,
+      "macro_recall": 0.5642982181619572,
+      "macro_f1": 0.5582955578222042
+    },
+    "linear_svm": {
+      "accuracy": 0.5719635297948551,
+      "macro_precision": 0.5622047821645707,
+      "macro_recall": 0.5587792725010107,
+      "macro_f1": 0.5532388464691628
+    }
+  },
+  "class_labels": {
+    "0": "negative",
+    "1": "neutral",
+    "2": "positive"
+  }
+}
