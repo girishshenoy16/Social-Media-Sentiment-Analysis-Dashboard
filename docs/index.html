@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Sentiment Analysis Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">Sentiment Analysis Dashboard</div>
+        <div class="nav-links">
+            <a href="#section-overview" class="nav-link active" data-section="section-overview">Executive Overview</a>
+            <a href="#section-analyzer" class="nav-link" data-section="section-analyzer">Interactive Analyzer</a>
+            <a href="#section-performance" class="nav-link" data-section="section-performance">Model Performance</a>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <!-- Section 1: Executive Overview -->
+        <section id="section-overview" class="dashboard-section active">
+            <h2 class="section-title">Executive Overview</h2>
+
+            <div id="alert-banner" class="alert-banner">
+                <span class="alert-icon">&#9888;</span>
+                <span id="alert-message">Negative sentiment exceeds 25% threshold in recent window.</span>
+            </div>
+
+            <div class="kpi-ribbon" id="kpi-ribbon">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="kpi-total">--</div>
+                    <div class="kpi-label">Total Samples</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value" id="kpi-accuracy">--</div>
+                    <div class="kpi-label">Logistic Regression Accuracy</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value" id="kpi-f1">--</div>
+                    <div class="kpi-label">Logistic Regression Macro F1</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value" id="kpi-classes">--</div>
+                    <div class="kpi-label">Sentiment Classes</div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3 class="chart-title">Sentiment Distribution</h3>
+                    <canvas id="chart-sentiment-donut"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Dataset Splits</h3>
+                    <canvas id="chart-dataset-split"></canvas>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-container full-width">
+                    <h3 class="chart-title">Top Positive-Associated Terms</h3>
+                    <div id="positive-terms" class="terms-list"></div>
+                </div>
+                <div class="chart-container full-width">
+                    <h3 class="chart-title">Top Negative-Associated Terms</h3>
+                    <div id="negative-terms" class="terms-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive Sentiment Analyzer -->
+        <section id="section-analyzer" class="dashboard-section">
+            <h2 class="section-title">Interactive Sentiment Analyzer</h2>
+
+            <div class="analyzer-container">
+                <div class="input-group">
+                    <label for="sentiment-input">Enter text to analyze:</label>
+                    <textarea id="sentiment-input" rows="4" placeholder="Type or paste text here..."></textarea>
+                    <button id="analyze-btn" class="btn-primary">Analyze Sentiment</button>
+                </div>
+
+                <div id="prediction-result" class="prediction-result hidden">
+                    <h3>Prediction Result</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span class="result-label">Predicted Sentiment:</span>
+                            <span id="pred-label" class="result-value"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Confidence:</span>
+                            <span id="pred-confidence" class="result-value"></span>
+                        </div>
+                    </div>
+                    <div class="probability-bars">
+                        <h4>Probability Breakdown</h4>
+                        <div id="prob-bars"></div>
+                    </div>
+                </div>
+
+                <div id="prediction-error" class="prediction-error hidden">
+                    <span id="error-message"></span>
+                </div>
+
+                <div class="lexicon-demo" style="margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+                    <h3 style="font-size:15px; font-weight:600; margin-bottom:8px; color:var(--primary);">Quick Lexicon Demo</h3>
+                    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
+                        Lightweight keyword-based classifier (~400 words) for instant feedback. Powered by VADER-style sentiment lexicon.
+                    </p>
+                    <div style="display:flex; gap:12px; align-items:center;">
+                        <input type="text" id="lexicon-input" placeholder="Type a sentence..." style="flex:1; padding:10px 14px; border:1px solid var(--border); border-radius:6px; background:var(--bg-body); color:var(--text-primary); font-size:14px; font-family:inherit;">
+                        <button id="lexicon-btn" class="btn-primary" style="padding:10px 20px; font-size:14px;">Classify</button>
+                    </div>
+                    <div id="lexicon-result" style="display:none; margin-top:12px; padding:12px 16px; background:var(--bg-body); border-radius:6px; border-left:3px solid var(--accent);">
+                        <span id="lexicon-label" style="font-weight:600; font-size:15px;"></span>
+                        <span id="lexicon-score" style="margin-left:12px; font-size:13px; color:var(--text-secondary);"></span>
+                    </div>
+                </div>
+
+                <!-- Automated Test Cases -->
+                <div class="test-cases-panel" style="margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                        <div>
+                            <h3 style="font-size:15px; font-weight:600; color:var(--primary); margin-bottom:2px;">Automated Test Cases</h3>
+                            <p style="font-size:12px; color:var(--text-secondary);">Runs 25 sentences through TF-IDF + Logistic Regression predictor</p>
+                        </div>
+                        <button id="run-tests-btn" class="btn-primary" style="padding:8px 20px; font-size:13px;">Run Test Cases</button>
+                    </div>
+
+                    <div id="test-summary" class="test-summary hidden">
+                        <div class="test-kpi-row">
+                            <div class="test-kpi"><span class="test-kpi-val" id="tc-total">25</span><span class="test-kpi-lbl">Total</span></div>
+                            <div class="test-kpi"><span class="test-kpi-val" id="tc-passed" style="color:var(--positive);">0</span><span class="test-kpi-lbl">Passed</span></div>
+                            <div class="test-kpi"><span class="test-kpi-val" id="tc-failed" style="color:var(--negative);">0</span><span class="test-kpi-lbl">Failed</span></div>
+                            <div class="test-kpi"><span class="test-kpi-val" id="tc-agreement">0%</span><span class="test-kpi-lbl">Agreement</span></div>
+                            <div class="test-kpi"><span class="test-kpi-val" id="tc-maxdiff">0</span><span class="test-kpi-lbl">Max Prob Diff</span></div>
+                            <div class="test-kpi"><span class="test-kpi-val" id="tc-overall">--</span><span class="test-kpi-lbl">Overall</span></div>
+                        </div>
+                        <button id="toggle-details-btn" class="btn-outline" style="margin-top:12px; font-size:12px; padding:6px 14px;">Show Details</button>
+                    </div>
+
+                    <div id="test-details" class="test-details hidden">
+                        <table class="test-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Sentence</th>
+                                    <th>JS Label</th>
+                                    <th>Agreement</th>
+                                    <th>Confidence</th>
+                                    <th>Prob Diff</th>
+                                </tr>
+                            </thead>
+                            <tbody id="test-results-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Model Performance & Business Insights -->
+        <section id="section-performance" class="dashboard-section">
+            <h2 class="section-title">Model Performance & Business Insights</h2>
+
+            <div class="metrics-table-container">
+                <h3 class="chart-title">Model Comparison Metrics</h3>
+                <table class="metrics-table" id="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Logistic Regression</th>
+                            <th>Linear SVM</th>
+                        </tr>
+                    </thead>
+                    <tbody id="metrics-tbody"></tbody>
+                </table>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3 class="chart-title">Class-wise Performance</h3>
+                    <canvas id="chart-class-performance"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Confusion Matrix - Logistic Regression</h3>
+                    <img id="img-confusion-lr" class="confusion-matrix-img" alt="Confusion Matrix - Logistic Regression">
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Confusion Matrix - Linear SVM</h3>
+                    <img id="img-confusion-svm" class="confusion-matrix-img" alt="Confusion Matrix - Linear SVM">
+                </div>
+            </div>
+
+            <div class="insights-container">
+                <h3 class="chart-title">Data-Derived Business Insights</h3>
+                <div id="business-insights" class="insights-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dashboard-footer">
+        <p>Social Media Sentiment Analysis Dashboard | TweetEval Benchmark | Built By Girish Shenoy</p>
+    </footer>
+
+    <script src="js/predictor-core.js"></script>
+    <script src="js/predictor.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+[
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.00033822753917653174,
+      "neutral": 0.00031421070966204976,
+      "positive": 0.9993475617511615
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.000472538328704247,
+      "neutral": 0.00040258658573353494,
+      "positive": 0.9991248750855621
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.012572648887417317,
+      "neutral": 0.0032615233333191385,
+      "positive": 0.9841658277792635
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.06772831710388856,
+      "neutral": 0.08064832053306081,
+      "positive": 0.8516233623630507
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.045967148498914555,
+      "neutral": 0.09943767975217822,
+      "positive": 0.8545951717489071
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.21064620574624127,
+      "neutral": 0.5716798712087694,
+      "positive": 0.2176739230449893
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.022353313369280522,
+      "neutral": 0.5432902968816292,
+      "positive": 0.43435638974909024
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.07827807634918917,
+      "neutral": 0.5685465418103817,
+      "positive": 0.35317538184042924
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.253347016815612,
+      "neutral": 0.6144547517524734,
+      "positive": 0.13219823143191467
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.28136393634923407,
+      "neutral": 0.3953691483965988,
+      "positive": 0.3232669152541672
+    }
+  },
+  {
+    "class_label": "negative",
+    "probabilities": {
+      "negative": 0.918263896718956,
+      "neutral": 0.057197478149124424,
+      "positive": 0.024538625131919675
+    }
+  },
+  {
+    "class_label": "negative",
+    "probabilities": {
+      "negative": 0.6503171984995886,
+      "neutral": 0.1169187968673714,
+      "positive": 0.2327640046330401
+    }
+  },
+  {
+    "class_label": "negative",
+    "probabilities": {
+      "negative": 0.6956760451597414,
+      "neutral": 0.24967159812614398,
+      "positive": 0.054652356714114635
+    }
+  },
+  {
+    "class_label": "negative",
+    "probabilities": {
+      "negative": 0.5313277171248788,
+      "neutral": 0.363561558427286,
+      "positive": 0.10511072444783522
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.3766560375789705,
+      "neutral": 0.10358479905826337,
+      "positive": 0.5197591633627662
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.01595067890654848,
+      "neutral": 0.845459426037387,
+      "positive": 0.1385898950560646
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.06295880292564289,
+      "neutral": 0.07664351467732289,
+      "positive": 0.8603976823970342
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.06826149440436999,
+      "neutral": 0.5761135944827985,
+      "positive": 0.35562491111283145
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.02210505947837684,
+      "neutral": 0.01924901132899217,
+      "positive": 0.958645929192631
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.048583506075115926,
+      "neutral": 0.7174956509582973,
+      "positive": 0.23392084296658686
+    }
+  },
+  {
+    "class_label": "neutral",
+    "probabilities": {
+      "negative": 0.05722744777184149,
+      "neutral": 0.9102221912850115,
+      "positive": 0.03255036094314703
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.048730922106324785,
+      "neutral": 0.02991089230505397,
+      "positive": 0.9213581855886213
+    }
+  },
+  {
+    "class_label": "negative",
+    "probabilities": {
+      "negative": 0.5500098260165056,
+      "neutral": 0.2852081639200068,
+      "positive": 0.1647820100634875
+    }
+  },
+  {
+    "class_label": "negative",
+    "probabilities": {
+      "negative": 0.8156631290104499,
+      "neutral": 0.015335167093503457,
+      "positive": 0.16900170389604666
+    }
+  },
+  {
+    "class_label": "positive",
+    "probabilities": {
+      "negative": 0.03511543547889044,
+      "neutral": 0.18462135833490212,
+      "positive": 0.7802632061862074
+    }
+  }
+]
