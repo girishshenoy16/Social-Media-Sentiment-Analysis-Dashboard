@@ -30,7 +30,7 @@ It achieves **58.3% accuracy** and **55.8% Macro F1** on the held-out test set (
 
 <div align="center">
 
-[![Social Media Sentiment Analysis Dashboard](docs/outputs/overview.png)
+![Social Media Sentiment Analysis Dashboard](docs/outputs/overview.png)
 
 ML-powered tweet sentiment classification with a **Power BI-inspired** 3-section dashboard. 100% static deployment on GitHub Pages. Zero data leaves the browser.
 
